@@ -7,4 +7,3 @@
 - [ ] Confirmation or success state
 - [ ] Alert, error, or recovery state
 - [ ] Resources or support screen
-- [ ] Mobile responsive view
