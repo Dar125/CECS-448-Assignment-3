@@ -1,6 +1,6 @@
 # First-Generation Student Academic Planning System
 
-CECS-448 Assignment 3 front-end implementation scaffold.
+CECS-448 Assignment 3
 
 ## Team
 
@@ -20,9 +20,7 @@ CECS-448 Assignment 3 front-end implementation scaffold.
 
 ## Project Summary
 
-This project will become a high-fidelity front-end prototype for a first-generation student academic planning system. The final implementation should help students understand degree progress, plan courses, respond to alerts, and find support resources without replacing official advising or registration systems.
-
-## Planned Feature Areas
+## Pages/Features
 
 - First-time onboarding flow
 - Dashboard with progress, next steps, deadlines, and alerts
@@ -73,4 +71,4 @@ Recommended Vercel settings:
 
 ## Assignment 3 Status
 
-Use [docs/rubric-checklist.md](docs/rubric-checklist.md) to track rubric coverage as the project moves from scaffold to implementation.
+Use [docs/rubric-checklist.md](docs/rubric-checklist.md) to track rubric coverage.
