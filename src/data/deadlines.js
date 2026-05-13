@@ -2,13 +2,15 @@ export const deadlines = [
   {
     id: 'registration',
     title: 'Registration planning deadline',
-    dueDate: 'TBD',
+    dueDate: 'May 20, 2026',
+    daysRemaining: '7 days',
     priority: 'high',
   },
   {
     id: 'financial-aid',
     title: 'Financial aid renewal reminder',
-    dueDate: 'TBD',
+    dueDate: 'June 1, 2026',
+    daysRemaining: '19 days',
     priority: 'medium',
   },
 ]
