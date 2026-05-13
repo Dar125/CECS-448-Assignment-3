@@ -656,3 +656,23 @@ p {
     width: 100%;
   }
 }
+
+/* Full screen layout override for the high fidelity My Plan page */
+body:has(.my-plan-page),
+body:has(.my-plan-page) #root,
+body:has(.my-plan-page) .app-shell {
+  background: #070b16;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body:has(.my-plan-page) .page-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+body:has(.my-plan-page) .site-header {
+  display: none;
+}
