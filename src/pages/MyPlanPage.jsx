@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/myplan.css'
 
 const semesters = [
@@ -111,9 +112,9 @@ function MyPlanPage() {
 
         <nav className="side-links">
           <a href="/dashboard">⌂ Dashboard</a>
-          <a href="/my-plan" className="selected">▱ My Plan</a>
-          <a href="/plan-courses">☰ Courses</a>
-          <a href="/resources">◎ Resources</a>
+          <a href="/my-plan" className="selected">▱ My Plan</Link>
+          <a href="/plan-courses">☰ Courses</Link>
+          <a href="/resources">◎ Resources</Link>
         </nav>
       </aside>
 
