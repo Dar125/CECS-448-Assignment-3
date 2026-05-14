@@ -1,7 +1,3 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import '../styles/myplan.css'
-import '../styles/courseplanning.css'
 
 .course-planning-page .plan-sidebar {
   position: sticky;
