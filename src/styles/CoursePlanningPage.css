@@ -277,6 +277,21 @@
   font-weight: 700;
 }
 
+.schedule-row {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.schedule-row:hover {
+  background: #161f31;
+  border-color: #625df5;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(98, 93, 245, 0.18);
+}
+.schedule-row:hover h3 {
+  color: #8d8aff;
+}
+
 @media (max-width: 900px) {
   .course-main {
     padding: 28px 18px;
