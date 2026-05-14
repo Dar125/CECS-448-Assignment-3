@@ -109,6 +109,22 @@
   padding: 24px 28px 22px;
 }
 
+.figma-course-card {
+  transition: all 0.22s ease;
+  cursor: pointer;
+}
+
+.figma-course-card:hover {
+  background: #161f31;
+  border-color: #625df5;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(98, 93, 245, 0.18);
+}
+
+.figma-course-card:hover h2 {
+  color: #8d8aff;
+}
+
 .figma-course-header {
   display: flex;
   justify-content: space-between;
