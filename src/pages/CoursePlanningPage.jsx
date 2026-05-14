@@ -63,7 +63,7 @@ function CoursePlanningPage() {
         </nav>
       </aside>
 
-      <main className="plan-main">
+      <main className="plan-main course-page-main">
         <div className="plan-header">
           <div>
             <h1>Course Planning</h1>
@@ -90,7 +90,7 @@ function CoursePlanningPage() {
         {activeTab === 'browse' ? (
           <section className="semester-section">
             {courses.map((course) => (
-              <div className="semester-card" key={course.code}>
+              <div className="course-card" key={course.code}>
                 <div className="semester-title-row">
                   <div>
                     <div
