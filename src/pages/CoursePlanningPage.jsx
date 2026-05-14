@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/myplan.css'
-import '../styles/courseplanning.css'
+import '../styles/CoursePlanningPage.css'
 
 const courses = [
   {
