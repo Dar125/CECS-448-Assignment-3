@@ -112,9 +112,9 @@ function MyPlanPage() {
 
         <nav className="side-links">
           <a href="/dashboard">⌂ Dashboard</a>
-          <a href="/my-plan" className="selected">▱ My Plan</Link>
-          <a href="/plan-courses">☰ Courses</Link>
-          <a href="/resources">◎ Resources</Link>
+          <Link to="/my-plan" className="selected">▱ My Plan</Link>
+          <Link to="/plan-courses">☰ Courses</Link>
+          <Link to="/resources">◎ Resources</Link>
         </nav>
       </aside>
 
