@@ -137,14 +137,19 @@ const filteredCourses = courses.filter((course) => {
             <section className="course-search-box">
               <div className="course-search-input">
                 <span>⌕</span>
-                <input type="text" placeholder="Search courses..." />
+                <input
+  type="text"
+  placeholder="Search courses..."
+  value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}
+/>
               </div>
 
               <button>▽ Filters</button>
             </section>
 
             <section className="course-list">
-              {courses.map((course) => (
+              {filteredCourses.map((course) => (
                 <article className="figma-course-card" key={course.code}>
                   <div className="figma-course-header">
                     <div>
