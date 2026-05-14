@@ -82,6 +82,12 @@ const currentSchedule = [
 
 function CoursePlanningPage() {
   const [activeTab, setActiveTab] = useState('browse')
+const [searchTerm, setSearchTerm] = useState('')
+
+const filteredCourses = courses.filter((course) => {
+  const text = `${course.code} ${course.name} ${course.description} ${course.instructor}`
+  return text.toLowerCase().includes(searchTerm.toLowerCase())
+})
 
   return (
     <div className="my-plan-page course-planning-page">
