@@ -5,36 +5,77 @@ import '../styles/myplan.css'
 const courses = [
   {
     code: 'CS 410',
-    title: 'Operating Systems',
-    desc: 'Study of operating system design and implementation.',
+    name: 'Operating Systems',
+    description: 'Study of operating system design and implementation.',
     instructor: 'Dr. Sarah Johnson',
     schedule: 'MWF 10:00-10:50',
-    seats: '12 / 30 seats',
+    availability: '12 / 30 seats',
     rating: '4.5 / 5.0',
     eligible: true,
     prereqs: ['CS 301 ✓', 'CS 250 ✓'],
   },
   {
     code: 'CS 425',
-    title: 'Machine Learning',
-    desc: 'Introduction to machine learning algorithms and applications.',
+    name: 'Machine Learning',
+    description: 'Introduction to machine learning algorithms and applications.',
     instructor: 'Dr. Michael Chen',
     schedule: 'TR 13:00-14:15',
-    seats: '5 / 25 seats',
+    availability: '5 / 25 seats',
     rating: '4.8 / 5.0',
     eligible: false,
     prereqs: ['CS 301 ✓', 'STAT 400 (missing)'],
   },
   {
     code: 'CS 360',
-    title: 'Computer Networks',
-    desc: 'Principles of computer networking and internet protocols.',
+    name: 'Computer Networks',
+    description: 'Principles of computer networking and internet protocols.',
     instructor: 'Dr. Emily Rodriguez',
     schedule: 'MWF 14:00-14:50',
-    seats: '18 / 30 seats',
+    availability: '18 / 30 seats',
     rating: '4.3 / 5.0',
     eligible: true,
     prereqs: ['CS 250 ✓'],
+  },
+  {
+    code: 'MATH 241',
+    name: 'Linear Algebra',
+    description: 'Vectors, matrices, linear transformations, and eigenvalues.',
+    instructor: 'Dr. Robert Kim',
+    schedule: 'TR 10:00-11:15',
+    availability: '8 / 35 seats',
+    rating: '4.1 / 5.0',
+    eligible: true,
+    prereqs: ['MATH 142 ✓'],
+  },
+  {
+    code: 'STAT 400',
+    name: 'Statistics',
+    description: 'Probability theory and statistical inference.',
+    instructor: 'Dr. Lisa Anderson',
+    schedule: 'MWF 11:00-11:50',
+    availability: '15 / 40 seats',
+    rating: '4.4 / 5.0',
+    eligible: true,
+    prereqs: ['MATH 142 ✓'],
+  },
+]
+
+const currentSchedule = [
+  {
+    code: 'CS 320',
+    name: 'Database Systems',
+    instructor: 'Dr. James Wilson',
+    schedule: 'TR 09:00-10:15',
+    location: 'Engineering 201',
+    credits: '3 credits',
+  },
+  {
+    code: 'CS 340',
+    name: 'Software Engineering',
+    instructor: 'Dr. Maria Garcia',
+    schedule: 'MWF 13:00-13:50',
+    location: 'Engineering 305',
+    credits: '3 credits',
   },
 ]
 
@@ -42,11 +83,10 @@ function CoursePlanningPage() {
   const [activeTab, setActiveTab] = useState('browse')
 
   return (
-    <div className="my-plan-page">
+    <div className="my-plan-page course-planning-page">
       <aside className="plan-sidebar">
         <div className="brand-box">
           <div className="brand-icon">🎓</div>
-
           <div>
             <h2>Academic Planner</h2>
             <p>First-Gen Success</p>
@@ -56,22 +96,18 @@ function CoursePlanningPage() {
         <nav className="side-links">
           <Link to="/dashboard">⌂ Dashboard</Link>
           <Link to="/my-plan">▱ My Plan</Link>
-          <Link to="/plan-courses" className="selected">
-            ☰ Courses
-          </Link>
+          <Link to="/plan-courses" className="selected">▰ Courses</Link>
           <Link to="/resources">◎ Resources</Link>
         </nav>
       </aside>
 
-      <main className="plan-main course-page-main">
-        <div className="plan-header">
-          <div>
-            <h1>Course Planning</h1>
-            <p>Browse and plan your courses</p>
-          </div>
-        </div>
+      <main className="course-main">
+        <header className="course-top">
+          <h1>Course Planning</h1>
+          <p>Browse and plan your courses</p>
+        </header>
 
-        <div className="tab-box">
+        <div className="course-tabs">
           <button
             className={activeTab === 'browse' ? 'active' : ''}
             onClick={() => setActiveTab('browse')}
@@ -85,105 +121,110 @@ function CoursePlanningPage() {
           >
             Current Schedule
           </button>
+
+          <span>2</span>
         </div>
 
         {activeTab === 'browse' ? (
-          <section className="semester-section">
-            {courses.map((course) => (
-              <div className="course-card" key={course.code}>
-                <div className="semester-title-row">
-                  <div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        gap: '12px',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <h2>
-                        {course.code} - {course.title}
-                      </h2>
+          <>
+            <section className="course-search-box">
+              <div className="course-search-input">
+                <span>⌕</span>
+                <input type="text" placeholder="Search courses..." />
+              </div>
 
-                      <span
-                        className={`status ${
-                          course.eligible ? 'done' : 'planned'
-                        }`}
-                      >
-                        {course.eligible
-                          ? 'Eligible'
-                          : 'Prerequisites Not Met'}
-                      </span>
+              <button>▽ Filters</button>
+            </section>
+
+            <section className="course-list">
+              {courses.map((course) => (
+                <article className="figma-course-card" key={course.code}>
+                  <div className="figma-course-header">
+                    <div>
+                      <div className="figma-title-row">
+                        <h2>{course.code} - {course.name}</h2>
+
+                        <span className={course.eligible ? 'badge-green' : 'badge-red'}>
+                          {course.eligible ? '⊙ Eligible' : '⊙ Prerequisites Not Met'}
+                        </span>
+                      </div>
+
+                      <p>{course.description}</p>
                     </div>
 
-                    <p>{course.desc}</p>
+                    <button className="view-btn">View Details</button>
                   </div>
 
-                  <button className="button-link">
-                    View Details
-                  </button>
-                </div>
+                  <div className="figma-info-row">
+                    <div>
+                      <span>♙ Instructor</span>
+                      <strong>{course.instructor}</strong>
+                    </div>
 
-                <div className="course-grid">
-                  <div className="course-box">
-                    <p>Instructor</p>
-                    <h4>{course.instructor}</h4>
+                    <div>
+                      <span>◷ Schedule</span>
+                      <strong>{course.schedule}</strong>
+                    </div>
+
+                    <div>
+                      <span>▱ Availability</span>
+                      <strong className={!course.eligible ? 'orange-text' : ''}>
+                        {course.availability}
+                      </strong>
+                    </div>
+
+                    <div>
+                      <span>☆ Rating</span>
+                      <strong>{course.rating}</strong>
+                    </div>
                   </div>
 
-                  <div className="course-box">
-                    <p>Schedule</p>
-                    <h4>{course.schedule}</h4>
-                  </div>
+                  <div className="figma-prereqs">
+                    <p>Prerequisites:</p>
 
-                  <div className="course-box">
-                    <p>Availability</p>
-                    <h4>{course.seats}</h4>
+                    <div>
+                      {course.prereqs.map((req) => (
+                        <span
+                          key={req}
+                          className={req.includes('missing') ? 'req-red' : 'req-green'}
+                        >
+                          {req}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-
-                <div style={{ marginTop: '20px' }}>
-                  <p>Prerequisites:</p>
-
-                  <div
-                    style={{
-                      display: 'flex',
-                      gap: '10px',
-                      flexWrap: 'wrap',
-                      marginTop: '10px',
-                    }}
-                  >
-                    {course.prereqs.map((req) => (
-                      <span
-                        key={req}
-                        className={`status ${
-                          req.includes('missing') ? 'planned' : 'done'
-                        }`}
-                      >
-                        {req}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </section>
+                </article>
+              ))}
+            </section>
+          </>
         ) : (
-          <section className="semester-card">
-            <div className="semester-title-row">
+          <section className="schedule-card">
+            <div className="schedule-title">
               <h2>Spring 2026 Schedule</h2>
               <p>15 credits total</p>
             </div>
 
-            <div className="course-grid">
-              <div className="course-box">
-                <h4>CS 320 - Database Systems</h4>
-                <p>TR 09:00-10:15</p>
-              </div>
+            {currentSchedule.map((course) => (
+              <div className="schedule-row" key={course.code}>
+                <div>
+                  <h3>{course.code} - {course.name}</h3>
+                  <span>Instructor</span>
+                  <strong>{course.instructor}</strong>
+                </div>
 
-              <div className="course-box">
-                <h4>CS 340 - Software Engineering</h4>
-                <p>MWF 13:00-13:50</p>
+                <div>
+                  <span>Schedule</span>
+                  <strong>{course.schedule}</strong>
+                </div>
+
+                <div>
+                  <span>Location</span>
+                  <strong>{course.location}</strong>
+                </div>
+
+                <em>{course.credits}</em>
               </div>
-            </div>
+            ))}
           </section>
         )}
       </main>
