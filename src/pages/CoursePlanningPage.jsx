@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Icon from '../components/Icon.jsx'
 import '../styles/myplan.css'
 import '../styles/CoursePlanningPage.css'
 
@@ -80,34 +80,22 @@ const currentSchedule = [
   },
 ]
 
+const getPrerequisiteStatus = (req) => (req.includes('missing') ? 'not-met' : 'met')
+
+const getPrerequisiteLabel = (req) =>
+  req.replace(' ✓', '').replace(' (missing)', '')
+
 function CoursePlanningPage() {
   const [activeTab, setActiveTab] = useState('browse')
-const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
 
-const filteredCourses = courses.filter((course) => {
-  const text = `${course.code} ${course.name} ${course.description} ${course.instructor}`
-  return text.toLowerCase().includes(searchTerm.toLowerCase())
-})
+  const filteredCourses = courses.filter((course) => {
+    const text = `${course.code} ${course.name} ${course.description} ${course.instructor}`
+    return text.toLowerCase().includes(searchTerm.toLowerCase())
+  })
 
   return (
     <div className="my-plan-page course-planning-page">
-      <aside className="plan-sidebar">
-        <div className="brand-box">
-          <div className="brand-icon">🎓</div>
-          <div>
-            <h2>Academic Planner</h2>
-            <p>First-Gen Success</p>
-          </div>
-        </div>
-
-        <nav className="side-links">
-          <Link to="/dashboard">⌂ Dashboard</Link>
-          <Link to="/my-plan">▱ My Plan</Link>
-          <Link to="/plan-courses" className="selected">▰ Courses</Link>
-          <Link to="/resources">◎ Resources</Link>
-        </nav>
-      </aside>
-
       <main className="course-main">
         <header className="course-top">
           <h1>Course Planning</h1>
@@ -138,11 +126,11 @@ const filteredCourses = courses.filter((course) => {
               <div className="course-search-input">
                 <span>⌕</span>
                 <input
-  type="text"
-  placeholder="Search courses..."
-  value={searchTerm}
-  onChange={(e) => setSearchTerm(e.target.value)}
-/>
+                  type="text"
+                  placeholder="Search courses..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
 
               <button>▽ Filters</button>
@@ -156,8 +144,9 @@ const filteredCourses = courses.filter((course) => {
                       <div className="figma-title-row">
                         <h2>{course.code} - {course.name}</h2>
 
-                        <span className={course.eligible ? 'badge-green' : 'badge-red'}>
-                          {course.eligible ? '⊙ Eligible' : '⊙ Prerequisites Not Met'}
+                        <span className={course.eligible ? 'prereq-status met' : 'prereq-status not-met'}>
+                          <Icon name={course.eligible ? 'check' : 'alert'} size={14} />
+                          {course.eligible ? 'Prerequisites Met' : 'Prerequisites Not Met'}
                         </span>
                       </div>
 
@@ -195,14 +184,19 @@ const filteredCourses = courses.filter((course) => {
                     <p>Prerequisites:</p>
 
                     <div>
-                      {course.prereqs.map((req) => (
-                        <span
-                          key={req}
-                          className={req.includes('missing') ? 'req-red' : 'req-green'}
-                        >
-                          {req}
-                        </span>
-                      ))}
+                      {course.prereqs.map((req) => {
+                        const status = getPrerequisiteStatus(req)
+
+                        return (
+                          <span
+                            key={req}
+                            className={status === 'not-met' ? 'prereq-chip not-met' : 'prereq-chip met'}
+                          >
+                            <Icon name={status === 'not-met' ? 'alert' : 'check'} size={12} />
+                            {getPrerequisiteLabel(req)}
+                          </span>
+                        )
+                      })}
                     </div>
                   </div>
                 </article>

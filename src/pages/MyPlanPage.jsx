@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Icon from '../components/Icon.jsx'
 import '../styles/myplan.css'
 
 const semesters = [
@@ -101,23 +101,6 @@ function MyPlanPage() {
 
   return (
     <div className="my-plan-page">
-      <aside className="plan-sidebar">
-        <div className="brand-box">
-          <div className="brand-icon">🎓</div>
-          <div>
-            <h2>Academic Planner</h2>
-            <p>First-Gen Success</p>
-          </div>
-        </div>
-
-        <nav className="side-links">
-          <a href="/dashboard">⌂ Dashboard</a>
-          <Link to="/my-plan" className="selected">▱ My Plan</Link>
-          <Link to="/plan-courses">☰ Courses</Link>
-          <Link to="/resources">◎ Resources</Link>
-        </nav>
-      </aside>
-
       <main className="plan-main">
         <div className="plan-header">
           <div>
@@ -154,7 +137,10 @@ function MyPlanPage() {
         </section>
 
         <section className="warning-box">
-          <strong>⚠ Prerequisite Issue Detected</strong>
+          <strong className="warning-title">
+            <Icon name="alert" size={16} />
+            Prerequisites Not Met
+          </strong>
           <p>
             CS 425 Machine Learning in Fall 2026 requires STAT 400, which you are
             taking this semester. Make sure to pass with a C or better.
@@ -194,7 +180,10 @@ function MyPlanPage() {
                     </span>
 
                     {semester.hasIssue && (
-                      <span className="issue-pill">Prereq Issue</span>
+                      <span className="prereq-status not-met">
+                        <Icon name="alert" size={14} />
+                        Prerequisites Not Met
+                      </span>
                     )}
                   </div>
 
@@ -210,7 +199,15 @@ function MyPlanPage() {
                       <div className="course-row">
                         <h4>{course.code}</h4>
                         {course.grade && <span>{course.grade}</span>}
-                        {course.issue && <span className="tiny-warning">⚠</span>}
+                        {course.issue && (
+                          <span
+                            aria-label="Prerequisites Not Met"
+                            className="prereq-status-icon not-met"
+                            title="Prerequisites Not Met"
+                          >
+                            <Icon name="alert" size={14} />
+                          </span>
+                        )}
                       </div>
 
                       <p>{course.name}</p>

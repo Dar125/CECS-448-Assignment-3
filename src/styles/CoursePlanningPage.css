@@ -1,15 +1,7 @@
-
-.course-planning-page .plan-sidebar {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-}
-
 .course-main {
   width: 100%;
-  max-width: 1260px;
-  padding: 42px 58px;
+  max-width: none;
+  padding: 0;
 }
 
 .course-top h1 {
@@ -134,6 +126,7 @@
 .figma-title-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -158,30 +151,6 @@
   padding: 11px 19px;
   font-weight: 700;
   cursor: pointer;
-}
-
-.badge-green,
-.badge-red,
-.req-green,
-.req-red {
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 10px;
-}
-
-.badge-green,
-.req-green {
-  background: #073c2b;
-  color: #12e083;
-  border: 1px solid #0a7d4d;
-}
-
-.badge-red,
-.req-red {
-  background: #3a1118;
-  color: #ff666d;
-  border: 1px solid #94303a;
 }
 
 .figma-info-row {
@@ -310,7 +279,7 @@
 
 @media (max-width: 900px) {
   .course-main {
-    padding: 28px 18px;
+    padding: 0;
   }
 
   .figma-course-header,
